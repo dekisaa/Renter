@@ -1,6 +1,7 @@
 package com.portfolio.renter.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Location {
@@ -12,8 +13,11 @@ public class Location {
   private String latitude;
   private String longitude;
 
-  @OneToOne(mappedBy = "location")
+  @OneToOne
   private Address address;
+
+  @OneToMany(mappedBy = "location", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  private List<Apartment> apartments;
 
   public Long getId() {
     return id;

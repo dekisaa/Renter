@@ -2,7 +2,9 @@ package com.portfolio.renter.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.portfolio.renter.model.enums.Gender;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -32,15 +34,19 @@ public class User implements UserDetails {
       inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
   private Set<Role> roles;
 
-  //  @JsonIgnore
-  //  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-  //  private List<Apartment> myApartments = new ArrayList<>();
+  @JsonIgnore
+  @OneToMany(mappedBy = "host", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  private List<Apartment> myApartments;
 
-  //  @ManyToMany(fetch = FetchType.LAZY, cascade = {
-  //          CascadeType.PERSIST,
-  //          CascadeType.MERGE
-  //  }, mappedBy = "user")
-  //  private List<Apartment> rentedApartments = new ArrayList<>();
+  @ManyToMany(
+      fetch = FetchType.LAZY,
+      cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+      mappedBy = "guests")
+  private List<Apartment> rentedApartments;
+
+  @OneToMany(mappedBy = "guest", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  private List<Reservation> reservations;
+
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
     return null;

@@ -14,7 +14,8 @@ public class Address {
   private String city;
   private String zipCode;
 
-  @OneToOne private Location location;
+
+  @OneToOne(mappedBy = "address") private Location location;
 
   public Location getLocation() {
     return location;
