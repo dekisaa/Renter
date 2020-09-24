@@ -31,6 +31,9 @@ repositories {
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa:2.3.4.RELEASE")
 	implementation("org.springframework.boot:spring-boot-starter-web")
+	implementation("jakarta.validation:jakarta.validation-api:2.0.2")
+	implementation("mysql:mysql-connector-java:8.0.21")
+	implementation("org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:2.3.4.RELEASE")
 
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("io.swagger:swagger-annotations:1.6.2")
