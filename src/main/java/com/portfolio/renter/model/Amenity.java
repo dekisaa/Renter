@@ -1,7 +1,7 @@
 package com.portfolio.renter.model;
 
-import javax.persistence.*;
 import java.util.List;
+import javax.persistence.*;
 
 @Entity
 public class Amenity {
@@ -12,10 +12,10 @@ public class Amenity {
 
   private String naziv;
 
-    @ManyToMany(
-            fetch = FetchType.LAZY,
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
-            mappedBy = "amenities")
+  @ManyToMany(
+      fetch = FetchType.LAZY,
+      cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+      mappedBy = "amenities")
   private List<Apartment> apartment;
 
   public Long getId() {

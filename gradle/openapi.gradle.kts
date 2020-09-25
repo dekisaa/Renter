@@ -16,7 +16,7 @@ apply<OpenApiGeneratorPlugin>()
 val generateApi by tasks.creating(GenerateTask::class) {
     group = "api"
     generatorName.set("spring")
-    inputSpec.set("$rootDir/specs/openapi.yaml")
+    inputSpec.set("$rootDir/specs/openapi.yml")
     outputDir.set("$rootDir")
     apiPackage.set("com.portfolio.renter.api")
     modelPackage.set("com.portfolio.renter.api.model")

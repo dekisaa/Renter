@@ -2,7 +2,6 @@ package com.portfolio.renter.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.portfolio.renter.model.enums.Gender;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
@@ -46,6 +45,9 @@ public class User implements UserDetails {
 
   @OneToMany(mappedBy = "guest", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   private List<Reservation> reservations;
+
+  @OneToMany(mappedBy = "guest", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  private List<CommentForApartment> commentsILeft;
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {

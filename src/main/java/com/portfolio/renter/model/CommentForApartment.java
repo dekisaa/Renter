@@ -9,12 +9,14 @@ public class CommentForApartment {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  private User guest;
   private String comment;
   private Integer rating;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private Apartment apartment;
+
+  @ManyToOne(fetch = FetchType.LAZY)
+  private User guest;
 
   public Long getId() {
     return id;

@@ -471,31 +471,20 @@ securityDefinitions:
     name: "api_key"
     in: "header"
 definitions:
-  Order:
+  Location:
     type: "object"
     properties:
       id:
         type: "integer"
         format: "int64"
-      petId:
-        type: "integer"
-        format: "int64"
-      quantity:
-        type: "integer"
-        format: "int32"
-      shipDate:
+      latitude:
         type: "string"
-        format: "date-time"
+      longitude:
+        type: "string"
+      address:
+        type: "object"
       status:
         type: "string"
-        description: "Order Status"
-        enum:
-          - "placed"
-          - "approved"
-          - "delivered"
-      complete:
-        type: "boolean"
-        default: false
     xml:
       name: "Order"
   Category:

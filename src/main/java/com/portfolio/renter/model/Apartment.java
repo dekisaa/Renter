@@ -28,7 +28,7 @@ public class Apartment {
   private Boolean status;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  private Location  location;
+  private Location location;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private User host;
@@ -43,12 +43,12 @@ public class Apartment {
   private List<Image> images;
 
   @ManyToMany(
-          fetch = FetchType.LAZY,
-          cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+      fetch = FetchType.LAZY,
+      cascade = {CascadeType.PERSIST, CascadeType.MERGE})
   @JoinTable(
-          name = "amenities",
-          joinColumns = {@JoinColumn(name = "apartment_id")},
-          inverseJoinColumns = {@JoinColumn(name = "amenity_id")})
+      name = "amenities",
+      joinColumns = {@JoinColumn(name = "apartment_id")},
+      inverseJoinColumns = {@JoinColumn(name = "amenity_id")})
   private List<Amenity> amenities;
 
   @ManyToMany(
@@ -59,7 +59,4 @@ public class Apartment {
       joinColumns = {@JoinColumn(name = "apartment_id")},
       inverseJoinColumns = {@JoinColumn(name = "user_id")})
   private List<User> guests;
-
-
-
 }

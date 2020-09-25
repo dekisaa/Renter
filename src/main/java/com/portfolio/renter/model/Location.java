@@ -1,7 +1,7 @@
 package com.portfolio.renter.model;
 
-import javax.persistence.*;
 import java.util.List;
+import javax.persistence.*;
 
 @Entity
 public class Location {
@@ -13,8 +13,7 @@ public class Location {
   private String latitude;
   private String longitude;
 
-  @OneToOne
-  private Address address;
+  @OneToOne private Address address;
 
   @OneToMany(mappedBy = "location", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   private List<Apartment> apartments;
