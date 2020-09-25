@@ -6,6 +6,8 @@ package com.portfolio.renter.api;
 
 import com.portfolio.renter.api.model.Pet;
 import io.swagger.annotations.*;
+import javax.validation.Valid;
+import javax.validation.constraints.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -48,7 +50,7 @@ public interface LocationApi {
       consumes = {"application/json", "application/xml"},
       method = RequestMethod.POST)
   ResponseEntity<Void> addlocation(
-      @ApiParam(value = "", required = true) @Validated @RequestBody Pet body);
+      @ApiParam(value = "", required = true) @Valid @RequestBody Pet body);
 
   /**
    * DELETE /location/{locationId} : Deletes a location
@@ -151,7 +153,7 @@ public interface LocationApi {
       method = RequestMethod.PUT)
   ResponseEntity<Void> updateLocation(
       @ApiParam(value = "Pet object that needs to be added to the store", required = true)
-          @Validated
+          @Valid
           @RequestBody
           Pet body);
 
