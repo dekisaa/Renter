@@ -4,7 +4,7 @@
  */
 package com.portfolio.renter.api;
 
-import com.portfolio.renter.api.model.Pet;
+import com.portfolio.renter.api.model.LocationDTO;
 import io.swagger.annotations.*;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -12,187 +12,66 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Validated
 @Api(value = "Location", description = "the Location API")
 public interface LocationApi {
 
   /**
-   * POST /location : Add a new location to the apartment
+   * POST /locations : Add a new location to the apartment
    *
-   * @param body (required)
-   * @return Invalid input (status code 405)
+   * @param locationDTO (required)
+   * @return Location successfully created (status code 201) or Invalid input (status code 405)
    */
   @ApiOperation(
       value = "Add a new location to the apartment",
-      nickname = "addlocation",
+      nickname = "addLocation",
       notes = "",
-      authorizations = {
-        @Authorization(
-            value = "petstore_auth",
-            scopes = {
-              @AuthorizationScope(
-                  scope = "write:pets",
-                  description = "modify pets in your account"),
-              @AuthorizationScope(scope = "read:pets", description = "read your pets")
-            })
-      },
+      response = LocationDTO.class,
       tags = {
         "location",
       })
-  @ApiResponses(value = {@ApiResponse(code = 405, message = "Invalid input")})
+  @ApiResponses(
+      value = {
+        @ApiResponse(
+            code = 201,
+            message = "Location successfully created",
+            response = LocationDTO.class),
+        @ApiResponse(code = 405, message = "Invalid input")
+      })
   @RequestMapping(
-      value = "/location",
-      consumes = {"application/json", "application/xml"},
+      value = "/locations",
+      produces = {"application/json"},
+      consumes = {"application/json"},
       method = RequestMethod.POST)
-  ResponseEntity<Void> addlocation(
-      @ApiParam(value = "", required = true) @Valid @RequestBody Pet body);
+  ResponseEntity<LocationDTO> addLocation(
+      @ApiParam(value = "", required = true) @Valid @RequestBody LocationDTO locationDTO);
 
   /**
-   * DELETE /location/{locationId} : Deletes a location
+   * GET /locations/{id} : Get one location by id.
    *
-   * @param locationId location id to delete (required)
-   * @param apiKey (optional)
-   * @return Invalid ID supplied (status code 400) or Pet not found (status code 404)
+   * @param id Id of Location. (required)
+   * @return requested location (status code 200) or Location not found (status code 404)
    */
   @ApiOperation(
-      value = "Deletes a location",
-      nickname = "deleteLocation",
+      value = "Get one location by id.",
+      nickname = "getLocation",
       notes = "",
-      authorizations = {
-        @Authorization(
-            value = "petstore_auth",
-            scopes = {
-              @AuthorizationScope(
-                  scope = "write:pets",
-                  description = "modify pets in your account"),
-              @AuthorizationScope(scope = "read:pets", description = "read your pets")
-            })
-      },
+      response = LocationDTO.class,
       tags = {
         "location",
       })
   @ApiResponses(
       value = {
-        @ApiResponse(code = 400, message = "Invalid ID supplied"),
-        @ApiResponse(code = 404, message = "Pet not found")
-      })
-  @RequestMapping(value = "/location/{locationId}", method = RequestMethod.DELETE)
-  ResponseEntity<Void> deleteLocation(
-      @ApiParam(value = "location id to delete", required = true) @PathVariable("locationId")
-          Long locationId,
-      @ApiParam(value = "") @RequestHeader(value = "api_key", required = false) String apiKey);
-
-  /**
-   * GET /location/{locationId} : Find location by ID Returns a single location
-   *
-   * @param locationId ID of pet to return (required)
-   * @return successful operation (status code 200) or Invalid ID supplied (status code 400) or Pet
-   *     not found (status code 404)
-   */
-  @ApiOperation(
-      value = "Find location by ID",
-      nickname = "getLocationById",
-      notes = "Returns a single location",
-      response = Pet.class,
-      authorizations = {@Authorization(value = "api_key")},
-      tags = {
-        "location",
-      })
-  @ApiResponses(
-      value = {
-        @ApiResponse(code = 200, message = "successful operation", response = Pet.class),
-        @ApiResponse(code = 400, message = "Invalid ID supplied"),
-        @ApiResponse(code = 404, message = "Pet not found")
+        @ApiResponse(code = 200, message = "requested location", response = LocationDTO.class),
+        @ApiResponse(code = 404, message = "Location not found")
       })
   @RequestMapping(
-      value = "/location/{locationId}",
-      produces = {"application/xml", "application/json"},
+      value = "/locations/{id}",
+      produces = {"application/json"},
       method = RequestMethod.GET)
-  ResponseEntity<Pet> getLocationById(
-      @ApiParam(value = "ID of pet to return", required = true) @PathVariable("locationId")
-          Long locationId);
-
-  /**
-   * PUT /location : Update an existing location
-   *
-   * @param body Pet object that needs to be added to the store (required)
-   * @return Invalid ID supplied (status code 400) or Pet not found (status code 404) or Validation
-   *     exception (status code 405)
-   */
-  @ApiOperation(
-      value = "Update an existing location",
-      nickname = "updateLocation",
-      notes = "",
-      authorizations = {
-        @Authorization(
-            value = "petstore_auth",
-            scopes = {
-              @AuthorizationScope(
-                  scope = "write:pets",
-                  description = "modify pets in your account"),
-              @AuthorizationScope(scope = "read:pets", description = "read your pets")
-            })
-      },
-      tags = {
-        "location",
-      })
-  @ApiResponses(
-      value = {
-        @ApiResponse(code = 400, message = "Invalid ID supplied"),
-        @ApiResponse(code = 404, message = "Pet not found"),
-        @ApiResponse(code = 405, message = "Validation exception")
-      })
-  @RequestMapping(
-      value = "/location",
-      consumes = {"application/json", "application/xml"},
-      method = RequestMethod.PUT)
-  ResponseEntity<Void> updateLocation(
-      @ApiParam(value = "Pet object that needs to be added to the store", required = true)
-          @Valid
-          @RequestBody
-          Pet body);
-
-  /**
-   * POST /location/{locationId} : Updates a location in the store with form data
-   *
-   * @param locationId ID of location that needs to be updated (required)
-   * @param name (optional)
-   * @param status Updated status of the pet (optional)
-   * @return Invalid input (status code 405)
-   */
-  @ApiOperation(
-      value = "Updates a location in the store with form data",
-      nickname = "updatePetWithForm",
-      notes = "",
-      authorizations = {
-        @Authorization(
-            value = "petstore_auth",
-            scopes = {
-              @AuthorizationScope(
-                  scope = "write:pets",
-                  description = "modify pets in your account"),
-              @AuthorizationScope(scope = "read:pets", description = "read your pets")
-            })
-      },
-      tags = {
-        "location",
-      })
-  @ApiResponses(value = {@ApiResponse(code = 405, message = "Invalid input")})
-  @RequestMapping(
-      value = "/location/{locationId}",
-      consumes = {"application/x-www-form-urlencoded"},
-      method = RequestMethod.POST)
-  ResponseEntity<Void> updatePetWithForm(
-      @ApiParam(value = "ID of location that needs to be updated", required = true)
-          @PathVariable("locationId")
-          Long locationId,
-      @ApiParam(value = "") @RequestParam(value = "name", required = false) String name,
-      @ApiParam(value = "Updated status of the pet")
-          @RequestParam(value = "status", required = false)
-          String status);
+  ResponseEntity<LocationDTO> getLocation(
+      @Min(0) @ApiParam(value = "Id of Location.", required = true) @PathVariable("id") Integer id);
 }

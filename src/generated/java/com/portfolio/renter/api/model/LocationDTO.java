@@ -6,8 +6,8 @@ import java.util.Objects;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
-/** Location */
-public class Location {
+/** LocationDTO */
+public class LocationDTO {
   @JsonProperty("id")
   private Long id;
 
@@ -18,12 +18,12 @@ public class Location {
   private String longitude;
 
   @JsonProperty("address")
-  private Object address;
+  private AddressDTO address;
 
   @JsonProperty("status")
   private String status;
 
-  public Location id(Long id) {
+  public LocationDTO id(Long id) {
     this.id = id;
     return this;
   }
@@ -42,7 +42,7 @@ public class Location {
     this.id = id;
   }
 
-  public Location latitude(String latitude) {
+  public LocationDTO latitude(String latitude) {
     this.latitude = latitude;
     return this;
   }
@@ -61,7 +61,7 @@ public class Location {
     this.latitude = latitude;
   }
 
-  public Location longitude(String longitude) {
+  public LocationDTO longitude(String longitude) {
     this.longitude = longitude;
     return this;
   }
@@ -80,7 +80,7 @@ public class Location {
     this.longitude = longitude;
   }
 
-  public Location address(Object address) {
+  public LocationDTO address(AddressDTO address) {
     this.address = address;
     return this;
   }
@@ -92,15 +92,15 @@ public class Location {
    */
   @ApiModelProperty(value = "")
   @Valid
-  public Object getAddress() {
+  public AddressDTO getAddress() {
     return address;
   }
 
-  public void setAddress(Object address) {
+  public void setAddress(AddressDTO address) {
     this.address = address;
   }
 
-  public Location status(String status) {
+  public LocationDTO status(String status) {
     this.status = status;
     return this;
   }
@@ -127,12 +127,12 @@ public class Location {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Location location = (Location) o;
-    return Objects.equals(this.id, location.id)
-        && Objects.equals(this.latitude, location.latitude)
-        && Objects.equals(this.longitude, location.longitude)
-        && Objects.equals(this.address, location.address)
-        && Objects.equals(this.status, location.status);
+    LocationDTO locationDTO = (LocationDTO) o;
+    return Objects.equals(this.id, locationDTO.id)
+        && Objects.equals(this.latitude, locationDTO.latitude)
+        && Objects.equals(this.longitude, locationDTO.longitude)
+        && Objects.equals(this.address, locationDTO.address)
+        && Objects.equals(this.status, locationDTO.status);
   }
 
   @Override
@@ -143,7 +143,7 @@ public class Location {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Location {\n");
+    sb.append("class LocationDTO {\n");
 
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    latitude: ").append(toIndentedString(latitude)).append("\n");

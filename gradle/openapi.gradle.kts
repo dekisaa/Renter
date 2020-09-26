@@ -33,15 +33,16 @@ val generateApi by tasks.creating(GenerateTask::class) {
             )
     )
     doFirst {
-        delete(fileTree("$rootDir\\src\\generated\\java\\com.portfolio.renter.api").matching {
-            exclude(
-                    "/thalassa/api/model/LabUser.java",
-                    "/thalassa/api/model/LabUserShort.java"
-            )
+        delete(fileTree("$rootDir\\src\\generated\\java\\com\\portfolio\\renter\\api").matching {
             include("**/*")
         })
     }
     finalizedBy("spotlessApply")
+
+    doLast {
+        delete("$rootDir\\src\\generated\\java\\com\\portfolio\\renter\\api\\ApiUtil.java")
+        delete("$rootDir\\pom.xml")
+    }
 }
 
 //tasks.named("check") {
