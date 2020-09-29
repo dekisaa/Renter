@@ -17,6 +17,16 @@ public class LocationController extends AbstractController implements LocationAp
   }
 
   @Override
+  public ResponseEntity<LocationDTO> deleteLocation(@Min(0) Integer id) {
+    return null;
+  }
+
+  @Override
+  public ResponseEntity<LocationDTO> editLocation(@Valid LocationDTO locationDTO) {
+    return null;
+  }
+
+  @Override
   public ResponseEntity<LocationDTO> getLocation(@Min(0) Integer id) {
     return new ResponseEntity<>(new LocationDTO().latitude("12341"), HttpStatus.OK);
   }

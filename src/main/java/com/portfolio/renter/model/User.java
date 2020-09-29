@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -19,6 +20,7 @@ public class User implements UserDetails {
   @Column(unique = true)
   private String username;
 
+  @Email private String email;
   private String password;
   private String name;
   private String lastname;
@@ -82,6 +84,46 @@ public class User implements UserDetails {
   @Override
   public boolean isEnabled() {
     return false;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public List<Apartment> getMyApartments() {
+    return myApartments;
+  }
+
+  public void setMyApartments(List<Apartment> myApartments) {
+    this.myApartments = myApartments;
+  }
+
+  public List<Apartment> getRentedApartments() {
+    return rentedApartments;
+  }
+
+  public void setRentedApartments(List<Apartment> rentedApartments) {
+    this.rentedApartments = rentedApartments;
+  }
+
+  public List<Reservation> getReservations() {
+    return reservations;
+  }
+
+  public void setReservations(List<Reservation> reservations) {
+    this.reservations = reservations;
+  }
+
+  public List<CommentForApartment> getCommentsILeft() {
+    return commentsILeft;
+  }
+
+  public void setCommentsILeft(List<CommentForApartment> commentsILeft) {
+    this.commentsILeft = commentsILeft;
   }
 
   public Long getId() {

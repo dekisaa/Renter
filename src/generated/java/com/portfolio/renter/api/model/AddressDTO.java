@@ -9,6 +9,9 @@ import javax.validation.constraints.*;
 /** This objects is created for sending address with location. */
 @ApiModel(description = "This objects is created for sending address with location.")
 public class AddressDTO {
+  @JsonProperty("id")
+  private Long id;
+
   @JsonProperty("street")
   private String street;
 
@@ -20,6 +23,25 @@ public class AddressDTO {
 
   @JsonProperty("zip_code")
   private Integer zipCode;
+
+  public AddressDTO id(Long id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Get id
+   *
+   * @return id
+   */
+  @ApiModelProperty(value = "")
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
 
   public AddressDTO street(String street) {
     this.street = street;
@@ -117,7 +139,8 @@ public class AddressDTO {
       return false;
     }
     AddressDTO addressDTO = (AddressDTO) o;
-    return Objects.equals(this.street, addressDTO.street)
+    return Objects.equals(this.id, addressDTO.id)
+        && Objects.equals(this.street, addressDTO.street)
         && Objects.equals(this.number, addressDTO.number)
         && Objects.equals(this.city, addressDTO.city)
         && Objects.equals(this.zipCode, addressDTO.zipCode);
@@ -125,7 +148,7 @@ public class AddressDTO {
 
   @Override
   public int hashCode() {
-    return Objects.hash(street, number, city, zipCode);
+    return Objects.hash(id, street, number, city, zipCode);
   }
 
   @Override
@@ -133,6 +156,7 @@ public class AddressDTO {
     StringBuilder sb = new StringBuilder();
     sb.append("class AddressDTO {\n");
 
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    street: ").append(toIndentedString(street)).append("\n");
     sb.append("    number: ").append(toIndentedString(number)).append("\n");
     sb.append("    city: ").append(toIndentedString(city)).append("\n");

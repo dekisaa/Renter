@@ -50,6 +50,64 @@ public interface LocationApi {
       @ApiParam(value = "", required = true) @Valid @RequestBody LocationDTO locationDTO);
 
   /**
+   * DELETE /locations/{id} : Delete one Location by id.
+   *
+   * @param id Id of address. (required)
+   * @return deleted Location (status code 200) or Location not found (status code 404)
+   */
+  @ApiOperation(
+      value = "Delete one Location by id.",
+      nickname = "deleteLocation",
+      notes = "",
+      response = LocationDTO.class,
+      tags = {
+        "location",
+      })
+  @ApiResponses(
+      value = {
+        @ApiResponse(code = 200, message = "deleted Location", response = LocationDTO.class),
+        @ApiResponse(code = 404, message = "Location not found")
+      })
+  @RequestMapping(
+      value = "/locations/{id}",
+      produces = {"application/json"},
+      method = RequestMethod.DELETE)
+  ResponseEntity<LocationDTO> deleteLocation(
+      @Min(0) @ApiParam(value = "Id of address.", required = true) @PathVariable("id") Integer id);
+
+  /**
+   * PUT /locations : Edit location
+   *
+   * @param locationDTO (required)
+   * @return Location successfully edited (status code 201) or Location not found (status code 404)
+   *     or Invalid input (status code 405)
+   */
+  @ApiOperation(
+      value = "Edit location",
+      nickname = "editLocation",
+      notes = "",
+      response = LocationDTO.class,
+      tags = {
+        "location",
+      })
+  @ApiResponses(
+      value = {
+        @ApiResponse(
+            code = 201,
+            message = "Location successfully edited",
+            response = LocationDTO.class),
+        @ApiResponse(code = 404, message = "Location not found"),
+        @ApiResponse(code = 405, message = "Invalid input")
+      })
+  @RequestMapping(
+      value = "/locations",
+      produces = {"application/json"},
+      consumes = {"application/json"},
+      method = RequestMethod.PUT)
+  ResponseEntity<LocationDTO> editLocation(
+      @ApiParam(value = "", required = true) @Valid @RequestBody LocationDTO locationDTO);
+
+  /**
    * GET /locations/{id} : Get one location by id.
    *
    * @param id Id of Location. (required)

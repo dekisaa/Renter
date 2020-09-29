@@ -10,7 +10,7 @@ public class Amenity {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  private String naziv;
+  private String name;
 
   @ManyToMany(
       fetch = FetchType.LAZY,
@@ -27,10 +27,10 @@ public class Amenity {
   }
 
   public String getNaziv() {
-    return naziv;
+    return name;
   }
 
   public void setNaziv(String naziv) {
-    this.naziv = naziv;
+    this.name = naziv;
   }
 }

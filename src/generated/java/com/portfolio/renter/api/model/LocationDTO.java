@@ -52,7 +52,8 @@ public class LocationDTO {
    *
    * @return latitude
    */
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
+  @NotNull
   public String getLatitude() {
     return latitude;
   }
@@ -71,7 +72,8 @@ public class LocationDTO {
    *
    * @return longitude
    */
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
+  @NotNull
   public String getLongitude() {
     return longitude;
   }

@@ -9,6 +9,8 @@ info:
 tags:
   - name: "location"
     description: "Addresses on this location"
+  - name: "address"
+    description: "addresses"
 
 paths:
   /locations:
@@ -31,6 +33,29 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/LocationDTO"
+        "405":
+          description: "Invalid input"
+    put:
+      tags:
+        - "location"
+      summary: "Edit location"
+      description: ""
+      operationId: "editLocation"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LocationDTO"
+      responses:
+        "201":
+          description: "Location successfully edited"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LocationDTO"
+        "404":
+          description: "Location not found"
         "405":
           description: "Invalid input"
   /locations/{id}:
@@ -56,6 +81,210 @@ paths:
                 $ref: "#/components/schemas/LocationDTO"
         "404":
           description: "Location not found"
+    delete:
+      tags:
+        - "location"
+      summary: "Delete one Location by id."
+      description: ""
+      operationId: "deleteLocation"
+      parameters:
+        - name: id
+          in: path
+          description: Id of address.
+          required: true
+          schema:
+            $ref: '#/components/schemas/PositiveInteger'
+      responses:
+        "200":
+          description: "deleted Location"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LocationDTO"
+        "404":
+          description: "Location not found"
+
+  /addresses:
+    post:
+      tags:
+        - "address"
+      summary: "Add a new addresses"
+      description: ""
+      operationId: "addAddress"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AddressDTO"
+      responses:
+        "201":
+          description: "Address successfully created"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AddressDTO"
+        "405":
+          description: "Invalid input"
+    put:
+      tags:
+        - "address"
+      summary: "Edit address of the location"
+      description: ""
+      operationId: "editAddress"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AddressDTO"
+      responses:
+        "201":
+          description: "Address successfully edited"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AddressDTO"
+        "404":
+          description: "Address not found"
+        "405":
+          description: "Invalid input"
+  /addresses/{id}:
+    get:
+      tags:
+        - "address"
+      summary: "Get one Address by id."
+      description: ""
+      operationId: "getAddress"
+      parameters:
+        - name: id
+          in: path
+          description: Id of address.
+          required: true
+          schema:
+            $ref: '#/components/schemas/PositiveInteger'
+      responses:
+        "200":
+          description: "requested Address"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AddressDTO"
+        "404":
+          description: "Address not found"
+    delete:
+      tags:
+        - "address"
+      summary: "Delete one Address by id."
+      description: ""
+      operationId: "deleteAddress"
+      parameters:
+        - name: id
+          in: path
+          description: Id of address.
+          required: true
+          schema:
+            $ref: '#/components/schemas/PositiveInteger'
+      responses:
+        "200":
+          description: "deleted Address"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AddressDTO"
+        "404":
+          description: "Address not found"
+
+    # /amenities:
+    #   post:
+    #     tags:
+    #       - "amenity"
+    #     summary: "Add a new amenity"
+    #     description: ""
+    #     operationId: "addAmenity"
+    #     requestBody:
+    #       required: true
+    #       content:
+    #         application/json:
+    #           schema:
+    #             $ref: "#/components/schemas/AddressDTO"
+    #     responses:
+    #       "201":
+    #         description: "Address successfully created"
+    #         content:
+    #           application/json:
+    #             schema:
+    #               $ref: "#/components/schemas/AddressDTO"
+    #       "405":
+    #         description: "Invalid input"
+    #   put:
+    #     tags:
+    #       - "address"
+    #     summary: "Edit address of the location"
+    #     description: ""
+    #     operationId: "editAddress"
+    #     requestBody:
+    #       required: true
+    #       content:
+    #         application/json:
+    #           schema:
+    #             $ref: "#/components/schemas/AddressDTO"
+    #     responses:
+    #       "201":
+    #         description: "Address successfully edited"
+    #         content:
+    #           application/json:
+    #             schema:
+    #               $ref: "#/components/schemas/AddressDTO"
+    #       "404":
+    #         description: "Address not found"
+    #       "405":
+    #         description: "Invalid input"
+    # /addresses/{id}:
+    #   get:
+    #     tags:
+    #       - "address"
+    #     summary: "Get one Address by id."
+    #     description: ""
+    #     operationId: "getAddress"
+    #     parameters:
+    #       - name: id
+    #         in: path
+    #         description: Id of address.
+    #         required: true
+    #         schema:
+    #           $ref: '#/components/schemas/PositiveInteger'
+    #     responses:
+    #       "200":
+    #         description: "requested Address"
+    #         content:
+    #           application/json:
+    #             schema:
+    #               $ref: "#/components/schemas/AddressDTO"
+    #       "404":
+    #         description: "Address not found"
+    #   delete:
+    #     tags:
+    #       - "address"
+    #     summary: "Delete one Address by id."
+    #     description: ""
+    #     operationId: "deleteAddress"
+    #     parameters:
+    #       - name: id
+    #         in: path
+    #         description: Id of address.
+    #         required: true
+    #         schema:
+    #           $ref: '#/components/schemas/PositiveInteger'
+    #     responses:
+    #       "200":
+    #         description: "deleted Address"
+    #         content:
+    #           application/json:
+    #             schema:
+    #               $ref: "#/components/schemas/AddressDTO"
+    #       "404":
+    #         description: "Address not found"
 
     # securityDefinitions:
     #   petstore_auth:
@@ -72,6 +301,56 @@ paths:
 
 components:
   schemas:
+    UserDTO:
+      type: object
+      description: This is a User object register via email.
+      properties:
+        id:
+          type: "integer"
+          format: "int64"
+        username:
+          type: string
+          description: objects name that is going to be used and seen by other users.
+          example: admin
+          pattern: '^[a-zA-Z]+$'
+        email:
+          type: string
+          description: objects email that is going to be used to register.
+          example: dexi@gmail.com
+          pattern: '^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'
+        password:
+          type: string
+          description: objects password that is going to be used for login.
+          example: admin
+          pattern: '^[a-zA-Z]+$'
+        name:
+          type: string
+          description: First name of the user.
+          example: John
+          pattern: '^[a-zA-Z]+$'
+        lastname:
+          type: string
+          description: Last name of the user.
+          example: Doe
+          pattern: '^[a-zA-Z]+$'
+        gender:
+          type: string
+          description: Users gender.
+          example: male
+          pattern: '^[a-zA-Z]+$'
+        role:
+          type: string
+          description: Users role.
+          example: admin
+          pattern: '^[a-zA-Z]+$'
+      required:
+        - username
+        - email
+        - password
+        - name
+        - lastname
+        - gender
+        - role
     LocationDTO:
       type: "object"
       properties:
@@ -86,10 +365,16 @@ components:
           $ref: '#/components/schemas/AddressDTO'
         status:
           type: "string"
+      required:
+        - latitude
+        - longitude
     AddressDTO:
       type: object
       description: This objects is created for sending address with location.
       properties:
+        id:
+          type: "integer"
+          format: "int64"
         street:
           type: string
           description: Describing this objects street name.
@@ -115,18 +400,105 @@ components:
         - number
         - city
         - zip_code
+    AmenityDTO:
+      type: object
+      description: This objects is created for selecting comodities for apartments.
+      properties:
+        id:
+          type: "integer"
+          format: "int64"
+        name:
+          type: string
+          description: Describing this objects function.
+          example: Wify
+          pattern: '^[a-zA-Z]+$'
+      required:
+        - name
+    ApartmentDTO:
+      type: object
+      description: This objects is created for setting up your appartment.
+      properties:
+        id:
+          type: integer
+          format: int64
+        numberOfRooms:
+          type: integer
+          description: Describing this objects function.
+          example: 1
+          minimum: 1
+        numberOfGuest:
+          type: integer
+          description: Describing this objects function.
+          example: 1
+          minimum: 1
+        datesToRent:
+          type: array
+          items:
+            type: string
+          description: Dates for renting apartment.
+          format: date-time
+          example: "2018-03-20T09:12:28Z"
+        price:
+          type: number
+          description: Price per night stay.
+          format: double
+          example: 10.00
+          minimum: 0.00
+        checkIn:
+          type: array
+          items:
+            type: string
+          description: Check in.
+          format: date-time
+          example: "2018-03-20T09:12:28Z"
+        checkOut:
+          type: array
+          items:
+            type: string
+          description: Check in.
+          format: date-time
+          example: "2018-03-20T09:12:28Z"
+        status:
+          type: boolean
+          description: Availability status.
+          example: true
+        location:
+          $ref: '#/components/schemas/LocationDTO'
+        host:
+          $ref: '#/components/schemas/UserDTO'
+        amenities:
+          type: array
+          items:
+            $ref: '#/components/schemas/AmenityDTO'
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImageDTO'
+      required:
+        - name
+    ImageDTO:
+      type: object
+      description: This objects is created for setting up images for your appartment.
+      properties:
+        id:
+          type: integer
+          format: int64
+        path:
+          type: string
+          description: Url path to the image.
+          example: /images/picture.jpg
     PositiveInteger:
       type: integer
       minimum: 0
-#    TestArray:
-#      type: array
-#      items:
-#        $ref: '#/components/schemas/AddressDTO'
-#    TestObject:
-#      type: object
-#      properties:
-#        array:
-#          $ref: '#/components/schemas/TestArray'
+      #    TestArray:
+      #      type: array
+      #      items:
+      #        $ref: '#/components/schemas/AddressDTO'
+      #    TestObject:
+      #      type: object
+      #      properties:
+      #        array:
+      #          $ref: '#/components/schemas/TestArray'
       
       
       

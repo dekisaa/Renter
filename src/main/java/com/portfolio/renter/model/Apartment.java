@@ -18,8 +18,8 @@ public class Apartment {
 
   private Integer numberOfRooms;
   private Integer numberOfGuest;
-  private LocalDateTime datesToRent;
-  private LocalDateTime freeDates;
+  private List<LocalDateTime> datesToRent;
+  private List<LocalDateTime> freeDates;
   private Double price;
   private LocalTime checkIn;
   private LocalTime checkOut;
