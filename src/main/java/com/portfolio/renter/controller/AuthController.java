@@ -1,6 +1,6 @@
 package com.portfolio.renter.controller;
 
-import com.portfolio.renter.model.DTO.UserDTO;
+import com.portfolio.renter.api.model.UserDTO;
 import com.portfolio.renter.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

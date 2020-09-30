@@ -5,11 +5,9 @@ import com.portfolio.renter.model.Role;
 import com.portfolio.renter.model.User;
 import com.portfolio.renter.repository.RoleRepository;
 import com.portfolio.renter.repository.UserRepository;
-
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;

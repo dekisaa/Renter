@@ -487,6 +487,16 @@ components:
           type: string
           description: Url path to the image.
           example: /images/picture.jpg
+    RoleDTO:
+      type: object
+      description: This objects tell us what our user has permision to do.
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+          example: ADMIN
     PositiveInteger:
       type: integer
       minimum: 0
