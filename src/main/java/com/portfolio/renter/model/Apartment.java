@@ -18,7 +18,12 @@ public class Apartment {
 
   private Integer numberOfRooms;
   private Integer numberOfGuest;
+
+  @ElementCollection
+  @CollectionTable(name = "dates_to_rent", joinColumns = @JoinColumn(name = "apartment_id"))
   private List<LocalDateTime> datesToRent;
+  @ElementCollection
+  @CollectionTable(name = "free_dates_to_rent", joinColumns = @JoinColumn(name = "apartment_id"))
   private List<LocalDateTime> freeDates;
   private Double price;
   private LocalTime checkIn;

@@ -1,8 +1,8 @@
-import WafepaAxios from '../apis/WafepaAxios';
+import RenterAxios from '../apis/RenterAxios';
 
 export const login = async function (credentials) {
   try {
-    let response = await WafepaAxios.post("/users/login", credentials);
+    let response = await RenterAxios.post("/users/login", credentials);
     let token = response.data;
 
     console.log(token);
