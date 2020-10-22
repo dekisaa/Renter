@@ -195,96 +195,113 @@ paths:
         "404":
           description: "Address not found"
 
-    # /amenities:
-    #   post:
-    #     tags:
-    #       - "amenity"
-    #     summary: "Add a new amenity"
-    #     description: ""
-    #     operationId: "addAmenity"
-    #     requestBody:
-    #       required: true
-    #       content:
-    #         application/json:
-    #           schema:
-    #             $ref: "#/components/schemas/AddressDTO"
-    #     responses:
-    #       "201":
-    #         description: "Address successfully created"
-    #         content:
-    #           application/json:
-    #             schema:
-    #               $ref: "#/components/schemas/AddressDTO"
-    #       "405":
-    #         description: "Invalid input"
-    #   put:
-    #     tags:
-    #       - "address"
-    #     summary: "Edit address of the location"
-    #     description: ""
-    #     operationId: "editAddress"
-    #     requestBody:
-    #       required: true
-    #       content:
-    #         application/json:
-    #           schema:
-    #             $ref: "#/components/schemas/AddressDTO"
-    #     responses:
-    #       "201":
-    #         description: "Address successfully edited"
-    #         content:
-    #           application/json:
-    #             schema:
-    #               $ref: "#/components/schemas/AddressDTO"
-    #       "404":
-    #         description: "Address not found"
-    #       "405":
-    #         description: "Invalid input"
-    # /addresses/{id}:
-    #   get:
-    #     tags:
-    #       - "address"
-    #     summary: "Get one Address by id."
-    #     description: ""
-    #     operationId: "getAddress"
-    #     parameters:
-    #       - name: id
-    #         in: path
-    #         description: Id of address.
-    #         required: true
-    #         schema:
-    #           $ref: '#/components/schemas/PositiveInteger'
-    #     responses:
-    #       "200":
-    #         description: "requested Address"
-    #         content:
-    #           application/json:
-    #             schema:
-    #               $ref: "#/components/schemas/AddressDTO"
-    #       "404":
-    #         description: "Address not found"
-    #   delete:
-    #     tags:
-    #       - "address"
-    #     summary: "Delete one Address by id."
-    #     description: ""
-    #     operationId: "deleteAddress"
-    #     parameters:
-    #       - name: id
-    #         in: path
-    #         description: Id of address.
-    #         required: true
-    #         schema:
-    #           $ref: '#/components/schemas/PositiveInteger'
-    #     responses:
-    #       "200":
-    #         description: "deleted Address"
-    #         content:
-    #           application/json:
-    #             schema:
-    #               $ref: "#/components/schemas/AddressDTO"
-    #       "404":
-    #         description: "Address not found"
+  /amenities:
+    post:
+      tags:
+        - "amenity"
+      summary: "Add a new amenity"
+      description: ""
+      operationId: "addAmenity"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AddressDTO"
+      responses:
+        "201":
+          description: "Address successfully created"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AddressDTO"
+        "405":
+          description: "Invalid input"
+  /amenities/{id}:
+    put:
+      tags:
+        - "amenity"
+      summary: "Edit amenities for specific apartment"
+      description: ""
+      operationId: "editAmenity"
+      parameters:
+        - name: id
+          in: path
+          description: Id of apartment
+          required: true
+          schema:
+            $ref: '#/components/schemas/PositiveInteger'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AmenityDTO"
+      responses:
+        "201":
+          description: "Amenity successfully edited"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AmenityDTO"
+        "404":
+          description: "Amenity not found"
+        "405":
+          description: "Invalid input"
+
+  /apartments:
+    post:
+      tags:
+        - "apartment"
+      summary: "Add a new apartment"
+      description: ""
+      operationId: "addApartment"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApartmentDTO"
+      responses:
+        "201":
+          description: "Apartment successfully created"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApartmentDTO"
+        "405":
+          description: "Invalid input"
+  /apartments/{id}:
+    put:
+      tags:
+        - "apartment"
+      summary: "Edit apartment"
+      description: ""
+      operationId: "editApartment"
+      parameters:
+        - name: id
+          in: path
+          description: Id of apartment
+          required: true
+          schema:
+            $ref: '#/components/schemas/PositiveInteger'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApartmentDTO"
+      responses:
+        "201":
+          description: "Apartment successfully edited"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApartmentDTO"
+        "404":
+          description: "Apartment not found"
+        "405":
+          description: "Invalid input"
 
     # securityDefinitions:
     #   petstore_auth:
