@@ -302,6 +302,28 @@ paths:
           description: "Apartment not found"
         "405":
           description: "Invalid input"
+  /reservations/{id}:
+    post:
+      tags:
+        - "reservation"
+      summary: "Add a new reservation"
+      description: ""
+      operationId: "addReservation"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApartmentDTO"
+      responses:
+        "201":
+          description: "Apartment successfully created"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApartmentDTO"
+        "405":
+          description: "Invalid input"
 
     # securityDefinitions:
     #   petstore_auth:
@@ -514,6 +536,9 @@ components:
         name:
           type: string
           example: ADMIN
+    ReservationDTO:
+      type: object
+      description: This objects tell us which
     PositiveInteger:
       type: integer
       minimum: 0
