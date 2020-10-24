@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class AmenityController extends AbstractController implements AmenityApi {
+
   @Override
-  public ResponseEntity<AddressDTO> addAmenity(@Valid AddressDTO addressDTO) {
+  public ResponseEntity<AddressDTO> addAmenity(@Valid AmenityDTO amenityDTO) {
     return null;
   }
 

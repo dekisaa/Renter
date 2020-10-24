@@ -4,8 +4,7 @@
  */
 package com.portfolio.renter.api;
 
-import com.portfolio.renter.api.model.AddressDTO;
-import com.portfolio.renter.api.model.AmenityDTO;
+import com.portfolio.renter.api.model.ApartmentDTO;
 import io.swagger.annotations.*;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -17,70 +16,70 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Validated
-@Api(value = "Amenity", description = "the Amenity API")
-public interface AmenityApi {
+@Api(value = "Apartment", description = "the Apartment API")
+public interface ApartmentApi {
 
   /**
-   * POST /amenities : Add a new amenity
+   * POST /apartments : Add a new apartment
    *
-   * @param amenityDTO (required)
-   * @return Address successfully created (status code 201) or Invalid input (status code 405)
+   * @param apartmentDTO (required)
+   * @return Apartment successfully created (status code 201) or Invalid input (status code 405)
    */
   @ApiOperation(
-      value = "Add a new amenity",
-      nickname = "addAmenity",
+      value = "Add a new apartment",
+      nickname = "addApartment",
       notes = "",
-      response = AddressDTO.class,
+      response = ApartmentDTO.class,
       tags = {
-        "amenity",
+        "apartment",
       })
   @ApiResponses(
       value = {
         @ApiResponse(
             code = 201,
-            message = "Address successfully created",
-            response = AddressDTO.class),
+            message = "Apartment successfully created",
+            response = ApartmentDTO.class),
         @ApiResponse(code = 405, message = "Invalid input")
       })
   @RequestMapping(
-      value = "/amenities",
+      value = "/apartments",
       produces = {"application/json"},
       consumes = {"application/json"},
       method = RequestMethod.POST)
-  ResponseEntity<AddressDTO> addAmenity(
-      @ApiParam(value = "", required = true) @Valid @RequestBody AmenityDTO amenityDTO);
+  ResponseEntity<ApartmentDTO> addApartment(
+      @ApiParam(value = "", required = true) @Valid @RequestBody ApartmentDTO apartmentDTO);
 
   /**
-   * PUT /amenities/{id} : Edit amenities for specific apartment
+   * PUT /apartments/{id} : Edit apartment
    *
    * @param id Id of apartment (required)
-   * @param amenityDTO (required)
-   * @return Amenity successfully edited (status code 201) or Amenity not found (status code 404) or
-   *     Invalid input (status code 405)
+   * @param apartmentDTO (required)
+   * @return Apartment successfully edited (status code 201) or Apartment not found (status code
+   *     404) or Invalid input (status code 405)
    */
   @ApiOperation(
-      value = "Edit amenities for specific apartment",
-      nickname = "editAmenity",
+      value = "Edit apartment",
+      nickname = "editApartment",
       notes = "",
-      response = AmenityDTO.class,
+      response = ApartmentDTO.class,
       tags = {
-        "amenity",
+        "apartment",
       })
   @ApiResponses(
       value = {
         @ApiResponse(
             code = 201,
-            message = "Amenity successfully edited",
-            response = AmenityDTO.class),
-        @ApiResponse(code = 404, message = "Amenity not found"),
+            message = "Apartment successfully edited",
+            response = ApartmentDTO.class),
+        @ApiResponse(code = 404, message = "Apartment not found"),
         @ApiResponse(code = 405, message = "Invalid input")
       })
   @RequestMapping(
-      value = "/amenities/{id}",
+      value = "/apartments/{id}",
       produces = {"application/json"},
       consumes = {"application/json"},
       method = RequestMethod.PUT)
-  ResponseEntity<AmenityDTO> editAmenity(
+  ResponseEntity<ApartmentDTO> editApartment(
       @Min(0) @ApiParam(value = "Id of apartment", required = true) @PathVariable("id") Integer id,
-      @ApiParam(value = "", required = true) @Valid @RequestBody AmenityDTO amenityDTO);
+      @ApiParam(value = "", required = true) @Valid @RequestBody ApartmentDTO apartmentDTO);
 }

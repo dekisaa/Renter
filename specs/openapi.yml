@@ -207,7 +207,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/AddressDTO"
+              $ref: "#/components/schemas/AmenityDTO"
       responses:
         "201":
           description: "Address successfully created"
@@ -309,6 +309,13 @@ paths:
       summary: "Add a new reservation"
       description: ""
       operationId: "addReservation"
+      parameters:
+        - name: id
+          in: path
+          description: Id of apartment
+          required: true
+          schema:
+            $ref: '#/components/schemas/PositiveInteger'
       requestBody:
         required: true
         content:
