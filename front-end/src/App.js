@@ -3,10 +3,8 @@ import './App.css';
 import 'react-dates/initialize';
 import {
     Route,
-    Link,
     HashRouter as Router,
     Switch,
-    Redirect,
 } from "react-router-dom";
 import Home from "./home/Home";
 import {NotificationContainer, NotificationManager} from "react-notifications";

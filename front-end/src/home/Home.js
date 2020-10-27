@@ -1,6 +1,7 @@
 import React from 'react';
 import {Col, Container} from 'reactstrap';
 import AppNavbar from "../navbar/AppNavbar";
+import SearchBox from "../searchBox/SearchBox";
 
 class Home extends React.Component {
     render() {
@@ -13,6 +14,7 @@ class Home extends React.Component {
                         </p>
                     </Col>
                 </Container>
+                <SearchBox/>
             </div>
         );
     }
