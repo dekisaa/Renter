@@ -250,6 +250,46 @@ paths:
           description: "Invalid input"
 
   /apartments:
+    get:
+      tags:
+        - "apartment"
+      summary: "Get apartments"
+      description: ""
+      operationId: "getApartments"
+      parameters:
+        - in: query
+          name: startDate
+          description: Date when guests want to check in
+          required: true
+          schema:
+            $ref: '#/components/schemas/LocalDate'
+        - in: query
+          name: endDate
+          description: Date when guests want to check out
+          required: true
+          schema:
+            $ref: '#/components/schemas/LocalDate'
+        - in: query
+          name: location
+          description: City in which apartments are
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: number of guests
+          description: Number of guests staying at the apartment
+          required: true
+          schema:
+            $ref: '#/components/schemas/PositiveInteger'
+      responses:
+        "201":
+          description: "Apartment successfully created"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApartmentDTO"
+        "405":
+          description: "Invalid input"
     post:
       tags:
         - "apartment"
@@ -549,6 +589,54 @@ components:
     PositiveInteger:
       type: integer
       minimum: 0
+    LocalDate:
+      type: object
+      properties:
+        year:
+          type: integer
+          format: int32
+          nullable: false
+        monthValue:
+          type: integer
+          format: int32
+          nullable: false
+        month:
+          $ref: '#/components/schemas/Month'
+        dayOfMonth:
+          type: integer
+          format: int32
+          nullable: false
+        dayOfYear:
+          type: integer
+          format: int32
+          nullable: false
+        dayOfWeek:
+          $ref: '#/components/schemas/DayOfWeek'
+    Month:
+      type: string
+      enum:
+        - JANUARY
+        - FEBRUARY
+        - MARCH
+        - APRIL
+        - MAY
+        - JUNE
+        - JULY
+        - AUGUST
+        - SEPTEMBER
+        - OCTOBER
+        - NOVEMBER
+        - DECEMBER
+    DayOfWeek:
+      type: string
+      enum:
+        - MONDAY
+        - TUESDAY
+        - WEDNESDAY
+        - THURSDAY
+        - FRIDAY
+        - SATURDAY
+        - SUNDAY
       #    TestArray:
       #      type: array
       #      items:

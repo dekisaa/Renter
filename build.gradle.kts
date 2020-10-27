@@ -10,7 +10,7 @@ plugins {
 group = "com.potfolio"
 version = "0.0.1-SNAPSHOT"
 
-apply("$rootDir/gradle/openapi.gradle.kts")
+//apply("$rootDir/gradle/openapi.gradle.kts")
 
 spotless {
 	java {
@@ -19,9 +19,9 @@ spotless {
 	}
 }
 
-sourceSets["main"].java {
-	srcDir("src\\generated\\java")
-}
+//sourceSets["main"].java {
+//	srcDir("src\\generated\\java")
+//}
 
 repositories {
 	mavenCentral()

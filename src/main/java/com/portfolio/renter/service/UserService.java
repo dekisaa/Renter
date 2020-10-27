@@ -1,6 +1,6 @@
 package com.portfolio.renter.service;
 
-import com.portfolio.renter.api.model.UserDTO;
+import com.portfolio.renter.controller.dto.UserDTO;
 import com.portfolio.renter.model.Role;
 import com.portfolio.renter.model.User;
 import com.portfolio.renter.repository.RoleRepository;
